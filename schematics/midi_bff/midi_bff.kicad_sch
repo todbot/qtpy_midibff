@@ -1505,6 +1505,157 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "kleeb-display:OLED-128x32"
+			(pin_names
+				(offset 1.016)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "J"
+				(at 0 -6.35 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "OLED-128x32"
+				(at 0 6.35 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" "display:OLED-128x32-cutout"
+				(at 0 8.89 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 1.27 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "OLED-128x32_0_1"
+				(rectangle
+					(start 0 5.08)
+					(end 15.24 -5.08)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+			)
+			(symbol "OLED-128x32_1_1"
+				(pin power_in line
+					(at -2.54 -3.81 0)
+					(length 2.54)
+					(name "GND"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at -2.54 -1.27 0)
+					(length 2.54)
+					(name "VCC"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input clock
+					(at -2.54 1.27 0)
+					(length 2.54)
+					(name "SCL"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin bidirectional line
+					(at -2.54 3.81 0)
+					(length 2.54)
+					(name "SDA"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "4"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "power:+3V3"
 			(power global)
 			(pin_numbers
@@ -2581,7 +2732,7 @@
 		(at 134.62 46.99)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "b9b17765-08e1-4e20-bb7d-27cb916c0350")
+		(uuid "a96ada23-86a2-47a1-9999-434ee67703ea")
 	)
 	(junction
 		(at 116.84 62.23)
@@ -2712,6 +2863,16 @@
 			(type default)
 		)
 		(uuid "17b765f7-2ca4-4911-8ba8-96c370a3cdaa")
+	)
+	(wire
+		(pts
+			(xy 114.3 90.17) (xy 124.46 90.17)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1c3976ef-cd1d-4de3-9614-57fb7475e7c9")
 	)
 	(wire
 		(pts
@@ -3075,6 +3236,16 @@
 	)
 	(wire
 		(pts
+			(xy 114.3 92.71) (xy 124.46 92.71)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "833cb15b-dc35-4500-8149-8163a461fd0d")
+	)
+	(wire
+		(pts
 			(xy 154.94 52.07) (xy 163.83 52.07)
 		)
 		(stroke
@@ -3335,7 +3506,7 @@
 	)
 	(wire
 		(pts
-			(xy 134.62 46.99) (xy 121.92 46.99)
+			(xy 134.62 46.99) (xy 124.46 46.99)
 		)
 		(stroke
 			(width 0)
@@ -3484,7 +3655,7 @@
 		(uuid "fb1185ce-56fa-41b4-830d-80789d2ea6dc")
 	)
 	(label "MIDI_IN"
-		(at 121.92 46.99 0)
+		(at 124.46 46.99 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3492,86 +3663,6 @@
 			(justify left bottom)
 		)
 		(uuid "01be9f4b-e33a-4d37-ae41-25aa75c2a7ce")
-	)
-	(label "Net-(U6-SCK)"
-		(at 100.33 49.53 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "026e2802-8ad8-415c-a941-2646c55b3d55")
-	)
-	(label "Net-(U6-A2)"
-		(at 74.93 64.77 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "073f0b3b-c648-4fbc-bfca-9c0a0a96e86b")
-	)
-	(label "Net-(U6-SDA)"
-		(at 74.93 69.85 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "15cf80a6-3a0e-4c4a-89d9-7229e2d0e904")
-	)
-	(label "Net-(U6-A0)"
-		(at 74.93 36.83 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "24c8859a-e1d5-452e-8043-203fbedb4150")
-	)
-	(label "Net-(U6-5V)"
-		(at 100.33 36.83 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "2a93b76e-3c99-4641-824e-b1988d0d89bd")
-	)
-	(label "Net-(U6-SCK)"
-		(at 100.33 49.53 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "35b07ff5-eb49-4d25-8150-4ba0f072baf6")
-	)
-	(label "Net-(U6-5V)"
-		(at 100.33 36.83 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "4427adba-dc11-4699-b550-c790d358c71d")
-	)
-	(label "Net-(U6-A1)"
-		(at 74.93 39.37 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "59e1fafe-560d-4bcf-82dd-09d10e943034")
 	)
 	(label "MIDI_IN"
 		(at 110.49 52.07 180)
@@ -3583,105 +3674,45 @@
 		)
 		(uuid "6408bc6b-24e7-47a2-b1de-52610707faf2")
 	)
-	(label "Net-(U6-SCL)"
-		(at 74.93 49.53 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "70f9bc81-ed90-4bf4-a569-9868e9fe768c")
-	)
-	(label "Net-(U6-MO)"
-		(at 100.33 44.45 0)
+	(label "SCL"
+		(at 63.5 49.53 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
 			(justify left bottom)
 		)
-		(uuid "81d52112-037f-42f1-bed8-546e86e0fd4e")
+		(uuid "6e6e9ced-f7c2-4bec-868c-a3eedce5ecbb")
 	)
-	(label "Net-(U6-MI)"
-		(at 100.33 46.99 0)
+	(label "SCL"
+		(at 114.3 92.71 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
 			(justify left bottom)
 		)
-		(uuid "8685dd79-a7fa-4db6-8e95-09f887afa952")
+		(uuid "8c16f7f5-42eb-4272-ad47-efec27459614")
 	)
-	(label "Net-(U6-A0)"
-		(at 74.93 36.83 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "97cf4a9e-4e8f-4554-b468-f5b393ce15c5")
-	)
-	(label "Net-(U6-MO)"
-		(at 100.33 44.45 0)
+	(label "SDA"
+		(at 114.3 90.17 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
 			(justify left bottom)
 		)
-		(uuid "a76af68a-4430-45c7-a1c3-18a826ee33be")
+		(uuid "cd7cf4cc-4231-4475-9122-98e7ef13aae4")
 	)
-	(label "Net-(U6-A2)"
-		(at 74.93 64.77 180)
+	(label "SDA"
+		(at 63.5 46.99 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right bottom)
+			(justify left bottom)
 		)
-		(uuid "a928d16b-3b93-404e-853b-f064a97f5b18")
-	)
-	(label "Net-(U6-A3)"
-		(at 74.93 44.45 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "ae5f82fe-5760-4e79-ab3c-8539b85ee521")
-	)
-	(label "Net-(U6-A3)"
-		(at 74.93 44.45 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "b48f5ce1-e3b5-462d-9b02-f7775fae8a12")
-	)
-	(label "Net-(U6-SDA)"
-		(at 74.93 69.85 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "d94c3790-2525-4111-889d-e58580744b47")
-	)
-	(label "Net-(U6-SCL)"
-		(at 74.93 49.53 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "db5b9444-37ca-48fb-9390-b07ccd44e22f")
+		(uuid "d5d58fab-c843-4106-973e-0ed59b2b6e67")
 	)
 	(label "MIDI_OUT"
 		(at 124.46 74.93 0)
@@ -3693,16 +3724,6 @@
 		)
 		(uuid "e26747ca-2b42-45a4-a2e8-831602e52d8f")
 	)
-	(label "Net-(U6-A1)"
-		(at 74.93 39.37 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "e4cee838-abab-41e1-a72a-a5ad381ad4ae")
-	)
 	(label "MIDI_OUT"
 		(at 63.5 52.07 0)
 		(effects
@@ -3712,16 +3733,6 @@
 			(justify left bottom)
 		)
 		(uuid "eba7fa26-b55f-4bcb-8234-b314fa25c14a")
-	)
-	(label "Net-(U6-MI)"
-		(at 100.33 46.99 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "f4117acc-2fac-4a9f-96c7-73341c31d3cc")
 	)
 	(symbol
 		(lib_id "power:GND")
@@ -5369,6 +5380,162 @@
 		)
 	)
 	(symbol
+		(lib_id "power:+3V3")
+		(at 124.46 95.25 90)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "3d7f0c59-073e-4bd2-aad8-a213d3818c86")
+		(property "Reference" "#PWR029"
+			(at 128.27 95.25 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "+3V3"
+			(at 119.38 95.25 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 124.46 95.25 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 124.46 95.25 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3V3\""
+			(at 124.46 95.25 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "e28fa80e-c892-4b3f-a89d-3e6d727b8605")
+		)
+		(instances
+			(project "midi_bff"
+				(path "/c90acee2-2190-4772-922f-6881161c54a7"
+					(reference "#PWR029")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 124.46 97.79 270)
+		(mirror x)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "460a3b57-b6f9-4564-b74f-3d87c99a873a")
+		(property "Reference" "#PWR028"
+			(at 118.11 97.79 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 122.174 99.314 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" ""
+			(at 124.46 97.79 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 124.46 97.79 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 124.46 97.79 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "70c513b4-7d3c-4663-aee5-e3185b09e000")
+		)
+		(instances
+			(project "midi_bff"
+				(path "/c90acee2-2190-4772-922f-6881161c54a7"
+					(reference "#PWR028")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Isolator:H11L1")
 		(at 147.32 46.99 0)
 		(mirror y)
@@ -6188,6 +6355,137 @@
 			(project "midi_bff"
 				(path "/c90acee2-2190-4772-922f-6881161c54a7"
 					(reference "H3")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "kleeb-display:OLED-128x32")
+		(at 127 93.98 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "bf022dd6-a36c-46c2-bd4f-11b77e1cb7fc")
+		(property "Reference" "J3"
+			(at 143.51 92.7099 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "OLED-128x32"
+			(at 143.51 95.2499 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "kleeb-display:OLED-128x32"
+			(at 127 85.09 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 127 92.71 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 127 93.98 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part" ""
+			(at 127 93.98 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "DigikeyPN" ""
+			(at 127 93.98 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" ""
+			(at 127 93.98 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Note" ""
+			(at 127 93.98 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "2"
+			(uuid "ee8f4155-7372-4cb4-97ba-7e8c4893a0f7")
+		)
+		(pin "3"
+			(uuid "3a9ddf03-4ae9-4ab7-a0cb-d057d0a7ce75")
+		)
+		(pin "4"
+			(uuid "9cfc5bf7-fb00-405e-ad3a-8814112d18bc")
+		)
+		(pin "1"
+			(uuid "c0a6b173-5809-4862-81ec-5437aae6f0a7")
+		)
+		(instances
+			(project "midi_bff"
+				(path "/c90acee2-2190-4772-922f-6881161c54a7"
+					(reference "J3")
 					(unit 1)
 				)
 			)
