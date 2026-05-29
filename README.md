@@ -44,6 +44,22 @@ arduino-cli compile \
   arduino/midi_interface
 ```
 
+SysEx messages up to 127 bytes are forwarded. See the source for notes on larger SysEx.
+
+### `midi_interface_simple` — simplified bridge for learners
+
+[`arduino/midi_interface_simple/`](arduino/midi_interface_simple/)
+
+Same USB-MIDI ↔ UART-MIDI bridge with the same filter/transform scaffolding, but with SysEx
+handling and advanced notes removed. A good starting point if you just want to read and modify
+the forwarding logic without the extra complexity.
+
+```
+arduino-cli compile \
+  --fqbn rp2040:rp2040:adafruit_qtpy:usbstack=tinyusb \
+  arduino/midi_interface_simple
+```
+
 ## CircuitPython sketches
 
 _Coming soon._
