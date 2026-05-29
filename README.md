@@ -62,7 +62,27 @@ arduino-cli compile \
 
 ## CircuitPython sketches
 
-_Coming soon._
+Requires CircuitPython 9+ firmware on the board.
+
+Library needed:
+- [tmidi](https://github.com/todbot/CircuitPython_TMIDI) — copy `tmidi.py` to `/lib/` on your device or install with `circup tmidi`
+
+### `midi_interface` — USB-MIDI ↔ UART-MIDI bridge
+
+[`circuitpython/midi_interface/`](circuitpython/midi_interface/)
+
+Forwards all MIDI between USB and UART in both directions. Same filter/transform scaffolding
+as the Arduino version — uncomment the examples or add your own:
+
+- Drop realtime messages (clock, active sensing, etc.)
+- Transpose notes on a channel
+- Remap channels
+
+SysEx messages up to 127 bytes are forwarded. Increase the `sysex_buf_*` bytearray sizes in
+the source to raise the limit.
+
+Copy `code.py` to the root of your device, or copy the whole `midi_interface/` folder and
+rename `code.py` to suit.
 
 ## Hardware
 
