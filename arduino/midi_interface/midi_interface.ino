@@ -14,14 +14,35 @@
  * To upload:
  * - Board: QTPy RP2040, Xiao RP2040, or similar
  * - Tools > USB Stack: Adafruit TinyUSB
- * 
+ *
  * To compile on the commandline with arduino-cli for Adafruit QTPy RP2040:
  *   arduino-cli compile \
  *    --fqbn rp2040:rp2040:adafruit_qtpy:usbstack=tinyusb \
  *   arduino/midi_interface
  *
- * Note: SysEx passthrough via send() is library/board-version dependent
- * and is not explicitly tested here.
+ * SysEx notes:
+ *   The MIDI library buffers up to SysExMaxSize bytes (default 128) before firing.
+ *   Messages that fit are forwarded correctly. Larger messages are split by the
+ *   library into overflow chunks delivered only via callback (invisible to the
+ *   read() polling loop here); the trailing fragment returned by read() starts
+ *   with 0xF7 and is dropped rather than forwarded as corrupt MIDI.
+ *
+ *   To handle larger SysEx (e.g. patch dumps), replace MIDI_CREATE_INSTANCE with
+ *   MIDI_CREATE_CUSTOM_INSTANCE and a settings struct that raises SysExMaxSize:
+ *
+ *     struct MySettings : public midi::DefaultSettings {
+ *         static const unsigned SysExMaxSize = 4096;
+ *     };
+ *     MIDI_CREATE_CUSTOM_INSTANCE(Adafruit_USBD_MIDI, usb_midi, MIDIusb, MySettings);
+ *     MIDI_CREATE_CUSTOM_INSTANCE(HardwareSerial,     Serial1,  MIDIuart, MySettings);
+ *
+ *   For truly streaming SysEx (zero buffering): Adafruit_USBD_MIDI exposes
+ *   usb_midi.write(byte) / usb_midi.read() as a byte stream, and Serial1 has
+ *   peek(). Detect 0xF0 with Serial1.peek() before calling MIDIuart.read(),
+ *   then stream bytes directly between Serial1 and usb_midi until 0xF7.
+ *   The USB->UART direction is harder: usb_midi.peek() always returns -1, so
+ *   it requires either a one-byte lookahead or replacing MIDIusb.read() with
+ *   a raw byte-level parser for that path.
  **/
 
 #include <Adafruit_TinyUSB.h>
@@ -100,7 +121,15 @@ void loop() {
         uint8_t        data1   = MIDIusb.getData1();
         uint8_t        data2   = MIDIusb.getData2();
         uint8_t        channel = MIDIusb.getChannel();
-        if (filter_usb_to_uart(type, data1, data2, channel)) {
+        if (type == midi::SystemExclusive) {
+            // getSysExArray() is [0xF0, data..., 0xF7] for a complete message.
+            // If it starts with 0xF7, it is the trailing fragment of an oversized
+            // message whose earlier chunks were invisible to this polling loop;
+            // drop it rather than forward corrupt MIDI.
+            const uint8_t* buf = MIDIusb.getSysExArray();
+            if (buf[0] == 0xF0)
+                MIDIuart.sendSysEx(MIDIusb.getSysExArrayLength(), buf, true);
+        } else if (filter_usb_to_uart(type, data1, data2, channel)) {
             MIDIuart.send(type, data1, data2, channel);
         }
     }
@@ -111,7 +140,11 @@ void loop() {
         uint8_t        data1   = MIDIuart.getData1();
         uint8_t        data2   = MIDIuart.getData2();
         uint8_t        channel = MIDIuart.getChannel();
-        if (filter_uart_to_usb(type, data1, data2, channel)) {
+        if (type == midi::SystemExclusive) {
+            const uint8_t* buf = MIDIuart.getSysExArray();
+            if (buf[0] == 0xF0)
+                MIDIusb.sendSysEx(MIDIuart.getSysExArrayLength(), buf, true);
+        } else if (filter_uart_to_usb(type, data1, data2, channel)) {
             MIDIusb.send(type, data1, data2, channel);
         }
     }

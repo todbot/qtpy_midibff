@@ -5,9 +5,22 @@ The board breaks out the host MCU's hardware UART to standard MIDI IN and MIDI O
 
 <img src="./docs/qtpy_midibff_disp.png" width=500>
 
+## Hardware
+
+The PCB is meant for easy assembly using only through-hole components. 
+It is essentialy a QTPy "doubler" with a standard MIDI In and MIDI Out circuit, 
+with a 4-pin I2C header for a standard OLED display (usually 128x32 SSD1306).
+
+## Assembling
+
+_Coming soon._
+
+
+
 ## Arduino sketches
 
 Requires [arduino-pico](https://arduino-pico.readthedocs.io/en/latest/install.html) board core.
+
 Set **Tools > USB Stack: Adafruit TinyUSB** before uploading any sketch.
 
 Libraries needed (Arduino Library Manager):
