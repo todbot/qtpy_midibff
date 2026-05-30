@@ -28,6 +28,20 @@
  * OLED: 128x32 SSD1306 on the standard I2C port (SDA/SCL), address 0x3C.
  * Change OLED_ADDR to 0x3D if your module uses the alternate address.
  *
+ * Display examples (128x32, text size 1, two rows):
+ *
+ *   Note On / Off:          CC:                     Program Change:
+ *   ┌────────────────────┐  ┌────────────────────┐  ┌────────────────────┐
+ *   │USB NoteOn    ch1   │  │UART CC       ch10  │  │USB PC        ch1   │
+ *   │n:C4(60)  v:127     │  │cc:74  val:63       │  │pc:5                │
+ *   └────────────────────┘  └────────────────────┘  └────────────────────┘
+ *
+ *   Pitch Bend:             SysEx:
+ *   ┌────────────────────┐  ┌────────────────────┐
+ *   │USB PitchBend ch1   │  │UART SysEx          │
+ *   │pb:-2048            │  │42 bytes            │
+ *   └────────────────────┘  └────────────────────┘
+ *
  * SysEx: same behaviour as midi_interface.ino — messages up to 127 bytes are
  * forwarded; larger messages are dropped. See that sketch for details and the
  * MIDI_CREATE_CUSTOM_INSTANCE workaround to raise the limit.
