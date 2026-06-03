@@ -27,6 +27,7 @@ Libraries needed (Arduino Library Manager):
 - [Adafruit TinyUSB](https://github.com/adafruit/Adafruit_TinyUSB_Arduino)
 - [MIDI Library](https://github.com/FortySevenEffects/arduino_midi_library)
 - [Adafruit SSD1306](https://github.com/adafruit/Adafruit_SSD1306) + [Adafruit GFX Library](https://github.com/adafruit/Adafruit-GFX-Library) _(OLED sketches only)_
+- [Adafruit SPIFlash](https://github.com/adafruit/Adafruit_SPIFlash) + [SdFat - Adafruit Fork](https://github.com/adafruit/SdFat) + [ArduinoJson](https://arduinojson.org) _(MSC sketch only)_
 
 ### `midi_interface` — USB-MIDI ↔ UART-MIDI bridge
 
@@ -58,6 +59,40 @@ message. Realtime messages (clock, active sensing) are forwarded but not shown, 
 arduino-cli compile \
   --fqbn rp2040:rp2040:adafruit_qtpy:usbstack=tinyusb \
   arduino/midi_interface_oled
+```
+
+### `midi_interface_msc` — bridge with USB flash drive and config file
+
+[`arduino/midi_interface_msc/`](arduino/midi_interface_msc/)
+
+Extends `midi_interface_oled` with a USB Mass Storage device backed by the RP2040's internal
+flash (the filesystem partition). The drive contains a `config.json` file that controls runtime
+behaviour — no recompile needed to change settings.
+
+```json
+{
+  "name": "MIDI BFF",
+  "manufacturer": "todbot",
+  "filter_realtime": false,
+  "transpose": 0
+}
+```
+
+Edit `config.json` on the drive, eject it, then reset the board to apply the new settings.
+The `filter_realtime` and `transpose` fields are applied in both directions.
+
+Requires a board Flash Size setting that includes a 1MB filesystem partition. Compile commands for each supported board:
+
+```
+# QTPy RP2040 (8MB flash)
+arduino-cli compile \
+  --fqbn rp2040:rp2040:adafruit_qtpy:usbstack=tinyusb,flash=8388608_1048576 \
+  arduino/midi_interface_msc
+
+# Xiao RP2040 (2MB flash)
+arduino-cli compile \
+  --fqbn rp2040:rp2040:seeed_xiao_rp2040:usbstack=tinyusb,flash=2097152_1048576 \
+  arduino/midi_interface_msc
 ```
 
 ### `midi_interface_simple` — simplified bridge for learners

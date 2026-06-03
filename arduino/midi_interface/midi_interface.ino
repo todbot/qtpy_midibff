@@ -11,6 +11,9 @@
  * - Adafruit TinyUSB -- https://github.com/adafruit/Adafruit_TinyUSB_Arduino
  * - MIDI Library    -- https://github.com/FortySevenEffects/arduino_midi_library
  *
+ * To install libraries with arduino-cli:
+ *   arduino-cli lib install "Adafruit TinyUSB Library" "MIDI Library"
+ *
  * To upload:
  * - Board: QTPy RP2040, Xiao RP2040, or similar
  * - Tools > USB Stack: Adafruit TinyUSB

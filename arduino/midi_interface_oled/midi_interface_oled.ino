@@ -16,6 +16,10 @@
  * - Adafruit SSD1306   -- https://github.com/adafruit/Adafruit_SSD1306
  * - Adafruit GFX Library -- https://github.com/adafruit/Adafruit-GFX-Library
  *
+ * To install libraries with arduino-cli:
+ *   arduino-cli lib install "Adafruit TinyUSB Library" "MIDI Library" \
+ *     "Adafruit SSD1306" "Adafruit GFX Library"
+ *
  * To upload:
  * - Board: QTPy RP2040, Xiao RP2040, or similar
  * - Tools > USB Stack: Adafruit TinyUSB
