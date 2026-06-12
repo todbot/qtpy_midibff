@@ -4536,7 +4536,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "2786f7d6-c2ec-4edd-8b88-687c03a9456e")
-		(property "Reference" "C28"
+		(property "Reference" "C1"
 			(at 127 23.876 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4698,7 +4698,7 @@
 		(instances
 			(project "midi_bff"
 				(path "/c90acee2-2190-4772-922f-6881161c54a7"
-					(reference "C28")
+					(reference "C1")
 					(unit 1)
 				)
 			)
