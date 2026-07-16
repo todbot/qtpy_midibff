@@ -40,9 +40,12 @@ Display examples (128x32, 8x8 font, 16 chars wide, 2 rows):
   └────────────────┘      └────────────────┘
 """
 
+import time
 import usb_midi
 import busio
 import board
+import neopixel
+import digitalio
 import tmidi
 
 # -- MIDI setup
@@ -70,6 +73,29 @@ try:
     oled.show()
 except Exception:
     oled = None
+
+# -- NeoPixel setup
+
+# change these colors to your preference
+COLOR_START           = (0x80, 0x00, 0x80)  # purple
+COLOR_USB_TO_UART     = (0x00, 0x50, 0x00)  # green      (USB->UART)
+COLOR_UART_TO_USB     = (0x00, 0x00, 0x50)  # blue       (UART->USB)
+COLOR_USB_TO_UART_RT  = (0x00, 0x0A, 0x00)  # dim green  (realtime msgs)
+COLOR_UART_TO_USB_RT  = (0x00, 0x00, 0x0A)  # dim blue   (realtime msgs)
+
+pixel = neopixel.NeoPixel(board.NEOPIXEL, 1, auto_write=True)
+if hasattr(board, 'NEOPIXEL_POWER'):
+    _npp = digitalio.DigitalInOut(board.NEOPIXEL_POWER)
+    _npp.direction = digitalio.Direction.OUTPUT
+    _npp.value = True
+pixel[0] = COLOR_START
+
+led_off_time = 0.0
+
+def led_flash(color):
+    global led_off_time
+    pixel[0] = color
+    led_off_time = time.monotonic() + 0.030
 
 # --
 # Filter / transform functions.
@@ -193,15 +219,24 @@ def show_sysex(src, n):
 # --
 
 while True:
+    if led_off_time and time.monotonic() >= led_off_time:
+        pixel[0] = (0, 0, 0)
+        led_off_time = 0
+
     # USB -> UART
     while msg := midi_usb.receive():
         if msg.type == tmidi.SYSEX:
             if msg.data0 > 0:
                 forward_sysex(sysex_buf_usb, msg.data0, uart)
                 show_sysex("USB", msg.data0)
+                led_flash(COLOR_USB_TO_UART)
         else:
             if msg.type < tmidi.CLOCK:
                 show_msg("USB", msg)
+            if msg.type >= tmidi.CLOCK:
+                if not led_off_time: led_flash(COLOR_USB_TO_UART_RT)
+            else:
+                led_flash(COLOR_USB_TO_UART)
             if filter_usb_to_uart(msg):
                 midi_uart.send(msg)
 
@@ -211,8 +246,13 @@ while True:
             if msg.data0 > 0:
                 forward_sysex(sysex_buf_uart, msg.data0, usb_midi.ports[1])
                 show_sysex("UART", msg.data0)
+                led_flash(COLOR_UART_TO_USB)
         else:
             if msg.type < tmidi.CLOCK:
                 show_msg("UART", msg)
+            if msg.type >= tmidi.CLOCK:
+                if not led_off_time: led_flash(COLOR_UART_TO_USB_RT)
+            else:
+                led_flash(COLOR_UART_TO_USB)
             if filter_uart_to_usb(msg):
                 midi_usb.send(msg)
